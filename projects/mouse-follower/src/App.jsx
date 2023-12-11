@@ -2,19 +2,20 @@ import { useEffect, useState } from "react"
 
 const FollowMouse = () => {
   const [enabled, setEnabled] = useState(false)
-  const [position, setPosition] = useState({x: 0, y: 0})
+  const [position, setPosition] = useState({ x: 0, y: 0 })
 
+  // pointer move
   useEffect(() => {
-    console.log('effect', {enabled})
+    console.log('effect', { enabled })
 
     const handleMove = (event) => {
       const { clientX, clientY } = event
-      console.log('handleMove', {clientX, clientY}) 
-      setPosition({x: clientX, y: clientY})
+      console.log('handleMove', { clientX, clientY })
+      setPosition({ x: clientX, y: clientY })
     }
 
     // Aquí se suscribe el evento
-    if (enabled){
+    if (enabled) {
       window.addEventListener('pointermove', handleMove)
     }
 
@@ -22,9 +23,19 @@ const FollowMouse = () => {
     // y también se ejecuta cuando cambian las dependencias y antes de ejecutarse el nuevo evento
     return () => {
       console.log('cleanup')
-      window.removeEventListener('pointermove', handleMove) 
+      window.removeEventListener('pointermove', handleMove)
+      setPosition({ x: 0, y: 0 })
     }
   }, [enabled])
+
+  // change body className
+  useEffect(() => {
+    document.body.classList.toggle('no-cursor', enabled)
+
+    return () => {
+      document.body.classList.remove('no-cursor')
+    }
+  })
 
   return (
     <>
