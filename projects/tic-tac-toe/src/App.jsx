@@ -10,17 +10,17 @@ function App() {
   // const [board, setBoard] = useState(Array(9).fill(null))  // así se inicializa si no usamos localStorage
   const [board, setBoard] = useState(() => {
     const boardFromStorage = window.localStorage.getItem('board')
-    return boardFromStorage ? JSON.parse(boardFromStorage) :  Array(9).fill(null)
+    return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
   })
   // const [turn, setTurn] = useState(TURNS.X)
   const [turn, setTurn] = useState(() => {
     const turnFromStorage = window.localStorage.getItem('turn')
-    return turnFromStorage ??  TURNS.X
+    return turnFromStorage ?? TURNS.X
   })
   // null es que no hay ganardor, false es un empate
   const [winner, setWinner] = useState(null)
 
-  
+
 
   const resetGame = () => {
     setBoard(Array(9).fill(null))
@@ -36,7 +36,7 @@ function App() {
     // no actualizamos esta posición si ya tiene algo
     if (board[index] || winner) return
     // actualizar el tablero
-    const newBoard = [ ... board]
+    const newBoard = [...board]
     newBoard[index] = turn
     setBoard(newBoard)
     // cambiar el turno
@@ -54,19 +54,19 @@ function App() {
     }
   }
 
-  return(
+  return (
     <main className="board">
       <h1>TIC TAC TOE</h1>
       <button onClick={resetGame}>Reset del juego</button>
-      
-      <GameBoard board={board} updateBoard={updateBoard}/>
 
-      <Players turn={turn}/>
+      <GameBoard board={board} updateBoard={updateBoard} />
 
-      <WinnerModal winner={winner} resetGame={resetGame}/>
+      <Players turn={turn} />
+
+      <WinnerModal winner={winner} resetGame={resetGame} />
 
     </main>
-    
+
   )
 }
 

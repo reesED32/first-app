@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+
+
 export const Square = ({ children, isSelected, updateBoard, index }) => {
     const className = `square ${isSelected ? 'is-selected' : ''}`
     
@@ -10,4 +13,11 @@ export const Square = ({ children, isSelected, updateBoard, index }) => {
         {children}
       </div>
     )
+  }
+
+  Square.propTypes = {
+    children: PropTypes.string,
+    isSelected: PropTypes.bool,
+    updateBoard: PropTypes.func,
+    index: PropTypes.number
   }
