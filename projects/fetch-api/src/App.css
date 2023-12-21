@@ -1,0 +1,35 @@
+/* Esto es para alinear en columna todo al centro */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    font-family: system-ui;
+}
+
+/* Estos 2 de abajo es para alinear en el centro pero en la misma línea */
+section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+section img {
+    max-width: 320px;
+    height: auto;
+}
+
+body {
+    background-color: gray;
+}
+
+button {
+    border-radius: 5px;
+    border: 1px;
+    margin: 1rem;
+    background-color: bisque;
+    color: blue;
+    padding: 10px;
+}
